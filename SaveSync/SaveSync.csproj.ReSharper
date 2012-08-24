@@ -1,0 +1,6 @@
+<Configuration>
+  <NamespaceFolders>
+    <SkipFolder>DBCC72EC-9137-458A-B104-0AF8F16FB57B/d:gui/d:images</SkipFolder>
+    <SkipFolder>DBCC72EC-9137-458A-B104-0AF8F16FB57B/d:gui</SkipFolder>
+  </NamespaceFolders>
+</Configuration>

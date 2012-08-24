@@ -1,0 +1,197 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>SaveSync</title>
+		
+        <link rel="stylesheet" type="text/css" href="css/ui-progress-bar.css" />
+		<link rel="stylesheet" type="text/css" href="jquery.tzineClock/jquery.tzineClock.css" />
+
+		<script type="text/javascript" src="jquery.tzineClock/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="jquery.tzineClock/jquery.tzineClock.js"></script>
+        <script type="text/javascript" src="js/animated-progress.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+        <!-- ReSharper disable CssNotResolved -->
+        <!-- ReSharper disable InvalidValue -->
+		<script type="text/javascript">
+		function disableSelection(target){
+		    if (typeof target.onselectstart != "undefined") //IE route
+		        target.onselectstart = function () { return false; };
+		    else if (typeof target.style.MozUserSelect != "undefined") //Firefox route
+		        target.style.MozUserSelect = "none";
+		    else //All other route (ie: Opera)
+		        target.onmousedown = function () { return false; };
+		    target.style.cursor = "default";
+		}
+
+		$(document).ready(function () {
+		    disableSelection(document.body);
+
+		    /*$(".a_demo_five").mousedown(function () {
+		        if ($(this).attr('class') != 'a_demo_five disabled') {
+		            $(this).addClass('active');
+		        }
+		    });
+
+		    $(".a_demo_five").mouseup(function () {
+		        $(this).removeClass('active');
+		    });*/
+		});
+		</script>
+		
+        <style type="text/css">
+        *{margin:0; padding:0;}		
+		
+		body{
+			background-color: transparent;
+			/*background-color: #000;*/
+		}
+		
+		h1
+		{
+		    position: absolute;
+		    margin-left: 5px;
+		    margin-right: 5px;
+		    margin-top: 25px;
+		    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+		    width: 250px;
+		    text-align: center;
+		    color:#E3E3E3;
+		    text-shadow: rgba(245,245,245,0.5) 0 5px 6px, rgba(245,245,245,0.2) 1px 3px 3px;
+		    font-size: 18pt;
+		    z-index: 100;
+		}
+		
+		.container{
+			width: 100%;
+			position: absolute;
+			top: -19px;
+		}
+		
+		.draghandle 
+        {
+            top: 0;
+            left: 0;
+            position: absolute;
+            height: 250px;
+            width: 250px;
+            z-index: 999;
+        }
+		
+		#fancyClock{
+			position:absolute;
+			height: 250px;
+			width: 250px;
+			
+			z-index: 0;
+			
+			margin-left: 25px;
+			margin-top: 45px;
+		}
+		
+        .a_demo_five 
+        {
+			/*cursor: pointer;*/
+            text-align: center;
+	        background-color:#000;
+	        width:250px;
+	        display:inline-block;
+	        font-family: 'Open Sans', sans-serif;
+	        font-size:12px;
+	        text-decoration:none;
+	        color:#fff;
+	        position:relative;
+	        margin-top:250px;
+	        padding-bottom:10px;
+	        padding-top:10px;
+	        background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	        background-image: -o-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	        background-image: -moz-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	        background-image: -webkit-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	        background-image: -ms-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	        background-image: -webkit-gradient(
+	        linear,
+	        left bottom,
+	        left top,
+	        color-stop(0, rgb(44,160,202)),
+	        color-stop(1, rgb(62,184,229))
+	        );
+	        -webkit-border-bottom-right-radius: 5px;
+	        -webkit-border-bottom-left-radius: 5px;
+	        -moz-border-radius-bottomright: 5px;
+	        -moz-border-radius-bottomleft: 5px;
+	        border-bottom-right-radius: 5px;
+	        border-bottom-left-radius: 5px;
+	        -webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785;
+	        -moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	        -o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	        box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785;
+        }
+
+        .a_demo_five:active {
+	        top:0px;
+	        background-image: linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	        background-image: -o-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	        background-image: -moz-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	        background-image: -webkit-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	        background-image: -ms-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	        background-image: -webkit-gradient(
+	        linear,
+	        left bottom,
+	        left top,
+	        color-stop(0, rgb(62,184,229)),
+	        color-stop(1, rgb(44,160,202))
+	        );
+	        -webkit-box-shadow: inset 0px 4px 1px #0b698b, 0px 2px 0px 0px #156785;
+	        -moz-box-shadow: 0px 2px 0px 1px #156785, 0px 5px 3px #999;
+	        -o-box-shadow: 0px 2px 0px 1px #156785, 0px 5px 3px #999;
+	        box-shadow: inset 0px 4px 1px #0b698b, 0px 2px 0px 0px #156785;
+        }
+        .a_demo_five::before {
+	        background-color:#fff;
+	        /*background-image:url(./images/Cloud128x128.png);*/
+	        background-repeat:no-repeat;
+	        background-position:center center;
+	        content:"";
+	        width:250px;
+	        height:250px;
+	        position:absolute;
+	        top:-220px;
+	        left:0px;
+	        margin-top:-11px;
+	        z-index:-1;
+	        -webkit-border-top-left-radius: 5px;
+	        -webkit-border-top-right-radius: 5px;
+	        -moz-border-radius-topleft: 5px;
+	        -moz-border-radius-topright: 5px;
+	        border-top-left-radius: 5px;
+	        border-top-right-radius: 5px;
+        }
+        .a_demo_five:active::before {
+	        top: -220px;	
+	        -webkit-box-shadow: 0px 3px 0px #ccc;
+	        -moz-box-shadow: 0px 3px 0px #ccc;
+	        -o-box-shadow: 0px 3px 0px #ccc;
+	        box-shadow: 0px 3px 0px #ccc;
+        }
+        </style>
+<!-- ReSharper restore InvalidValue -->
+<!-- ReSharper restore InvalidValue -->
+<!-- ReSharper restore InvalidValue -->
+<!-- ReSharper restore CssNotResolved -->
+	</head>
+	<body>
+	<div class="container">
+        <h1 id="gamename"></h1>
+        <div class="draghandle"></div>
+		<div id="fancyClock"></div>
+          <div class="ui-progress-bar blue ui-container transition" id="progress_bar">
+            <div class="ui-progress" style="width: 0; ">
+              <span class="ui-label" style="display: none; ">Completed</span>
+            </div>
+          </div>
+	    <a href="#" class="a_demo_five" id="btnBackup" onclick="guiController.backup()">
+            Backup!
+        </a>
+	</div>
+	</body>
+</html>

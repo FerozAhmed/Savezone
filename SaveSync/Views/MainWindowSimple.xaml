@@ -1,0 +1,21 @@
+﻿<Window x:Class="SaveSync.Views.MainWindowSimple"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Savezone" Height="300" Width="300" xmlns:my="http://schemas.awesomium.com/winfx" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" Icon="/Savezone;component/Cloud48x48.ico"
+        Closing="OnClose" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged" Cursor="Arrow" Name="windowMain">
+
+    <Window.Resources>
+        <ContextMenu x:Key="NotifierContextMenu"
+                    Placement="MousePoint">
+            <MenuItem Header="Quit" Click="Menu_Quit"/>
+        </ContextMenu>
+    </Window.Resources>
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="tbinfo" ProgressValue="0" ProgressState="None"></TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+
+    <Grid>
+        <my:WebControl MinHeight="50" MinWidth="50" Name="wbtnBackup" IsTransparent="True" Cursor="Arrow" />
+    </Grid>
+</Window>

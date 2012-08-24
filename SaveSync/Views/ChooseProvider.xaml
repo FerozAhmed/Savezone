@@ -1,0 +1,10 @@
+﻿<Window x:Class="SaveSync.Views.ChooseProvider"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:Awesomium.Windows.Controls;assembly=Awesomium.Windows.Controls"
+        Height="300" Width="300"
+        Title="ChooseProvider" Icon="/Savezone;component/Cloud48x48.ico" AllowsTransparency="True" Background="Transparent" Loaded="windowProvider_Loaded" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <my:WebControl MinHeight="50" MinWidth="50" Name="wcProvider" IsTransparent="True" />
+    </Grid>
+</Window>

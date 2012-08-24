@@ -1,0 +1,51 @@
+﻿<Window x:Class="SaveSync.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SaveZone" Height="436" Width="612" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="/Savezone;component/Cloud48x48.ico" Closing="OnClose" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged" xmlns:my="http://schemas.awesomium.com/winfx">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52" />
+            <RowDefinition Height="266*" />
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding Savegames}" Grid.Row="1" Name="lstSavegameInfo" Margin="0,0,0,94" x:FieldModifier="private">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Game">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Game}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Installed">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Game.IsInstalled}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Savegame location">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Savegamelocation}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Location exists">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LocationExists}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ProgressBar Grid.Row="1" Margin="12,0,12,11" Name="pbProgress" Height="20" VerticalAlignment="Bottom" />
+        <ProgressBar Height="10" Margin="12,0,12,37" Name="pbFiles" VerticalAlignment="Bottom" Grid.Row="1" />
+        <ProgressBar Grid.Row="1" Margin="12,0,12,53" Name="pbNumberofGames" Height="10" VerticalAlignment="Bottom" />
+        <TextBlock Text="Waiting.." Grid.Row="1" HorizontalAlignment="Left" Margin="12,0,0,69" Name="lblStatus" Height="19" VerticalAlignment="Bottom" />
+        <Button Content="Filter Available Savegames" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button2" VerticalAlignment="Top" Width="170" Click="button2_Click" />
+        <Button Content="Backup" Height="23" Margin="0,12,12,0" Name="btnBackup" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnBackup_Click" />
+    </Grid>
+</Window>
